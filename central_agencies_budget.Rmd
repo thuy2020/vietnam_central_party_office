@@ -1,0 +1,116 @@
+---
+title: "Expenditures of the Office of Central Party: 3 times higher than that of the Office of Government"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width = 6, fig.height = 6, fig.align= "center", message=FALSE, echo=FALSE)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+library(colorblindr)
+library(lubridate)
+
+data <- rio::import(here::here("data", "du toan chi co quan TW_complile_2006_2020.xlsx"), skip = 4) 
+
+pd <- data %>% 
+  pivot_longer(cols = c("2006":"2020"),
+                names_to = "Year",
+               values_to = "Amount") %>% 
+  filter(`Central Agencies` != "Central finance management board") %>% 
+  mutate(Amount_milusd = round(Amount/23000, 1)) #1 usd = 23000 vnd
+
+pd
+
+```
+
+``` {r pd_party}
+pd_party <- pd %>% 
+  filter(`Central Agencies` == "Office of central party committee") %>% 
+  drop_na() %>% 
+ggplot(aes(Year, Amount_milusd)) +
+    geom_col(fill = "#0072B2", alpha = .9) +
+  geom_text(aes(label= Amount_milusd), color = "white", vjust = 1.5) +
+    labs(title = "Planned Expenditures of the Central Party Office \n2008 - 2015",
+         x = "",
+         y = "Planned Expenditures (in Million USD)",
+         caption = "Note: Data for 2009, before 2008 and 2015 are not available \nSource: Data complied by author from multiple reports by \nVietnam's Ministry of Finance") +
+  scale_x_discrete(breaks = 2008:2015) +
+  theme_minimal()
+pd_party
+
+#ggsave("centralparty.png", pd_party)
+```
+
+```{r pd_four_office}
+four_office <- pd %>% 
+  filter(`Central Agencies` == "Presidential secretariat" |
+           `Central Agencies` == "National assembly's secretariat"|
+     #      `Central Agencies` == "HoChiMinh Academy of Politics" |
+           `Central Agencies` == "Governmental office" |
+           `Central Agencies` == "Office of central party committee") %>% 
+  drop_na() %>% 
+  mutate(Year = make_date(Year)) 
+
+
+four_office %>% 
+  ggplot(aes(Year, Amount_milusd, group = `Central Agencies`, fill = `Central Agencies`)) +
+  geom_line(aes(color = `Central Agencies`), size = 1.5) +
+   scale_color_OkabeIto(name = "Office of",
+                       breaks = c("Office of central party committee", "National assembly's secretariat", # keep the breaks as the variables in the data set
+                                   "Governmental office", "Presidential secretariat"),
+                      labels = c("Central Party Office", "Office of the National Assembly", # how we want to call it in the plot
+                                   "Office of Government", "State President’s Office")) + 
+  labs(title = "Planned Expenditures of Four Offices \n2006 - 2017",
+         x = "",
+         y = "Planned Expenditures (in Million USD)",
+         caption = "Note: Data of the Central Party Office for 2009, before 2008 and after 2015 are not available \nSource: Data complied by author from multiple reports by \nVietnam's Ministry of Finance") +
+  #scale_x_discrete(breaks = 2006:2017) +
+  theme(
+  legend.position = c(.4, .7),
+  legend.justification = c("right", "bottom"),
+  legend.box.just = "right",
+  legend.margin = margin(6, 6, 6, 6),
+  legend.title = element_blank()
+  ) 
+ #ggplotly(four_off)
+
+#ggsave("fouroffices.png")
+```
+
+
+```{r, fig.align='center', fig.height=7, fig.width=8}
+library(gt)
+
+allyr <- pd %>% 
+  filter(`Central Agencies` != "Supreme people's court" & 
+          `Central Agencies` != "Supreme people's court of investigation" &
+         `Central Agencies` != "Office of Central Committee for directing prevention and  anti-corruption" &
+           Year != 2020 &
+           Year != 2019 &
+           Year != 2018) %>% 
+  select("Central Agencies", "Amount_milusd", "Year") %>% 
+  pivot_wider(values_from = Amount_milusd,
+              names_from = Year) 
+
+allyr[1, 1] <- "State President’s Office"
+allyr[2, 1] <- "Office of the National Assembly"
+allyr[4, 1] <- "Office of Government"
+allyr[5, 1] <- "Central Party Office"
+  
+tb_allyr <- allyr %>% 
+  gt() %>% 
+  cols_label(`Central Agencies` = "") %>% 
+  cols_align(align = "left") %>% 
+  tab_header(title = "Planned Expenditures of Some Central Offices \n2006-2017",
+           subtitle = "(in million USD)") %>% 
+  tab_source_note("Data complied by author from multiple reports by \nVietnam's Ministry of Finance")
+
+#tb_allyr %>% 
+#gt::gtsave("test.png")
+```
+
