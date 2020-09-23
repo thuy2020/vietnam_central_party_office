@@ -1,8 +1,7 @@
 ---
-title: "Expenditures of the Office of Central Party: 3 times higher than that of the Office of Government"
+title: "Expenditures of Vietnam's Central Party Office"
+author: "Thuy Nguyen"
 output:
-  word_document: default
-  html_document: default
   pdf_document: default
 ---
 
@@ -23,8 +22,6 @@ pd <- data %>%
                values_to = "Amount") %>% 
   filter(`Central Agencies` != "Central finance management board") %>% 
   mutate(Amount_milusd = round(Amount/23000, 1)) #1 usd = 23000 vnd
-
-pd
 
 ```
 
@@ -50,8 +47,7 @@ pd_party
 four_office <- pd %>% 
   filter(`Central Agencies` == "Presidential secretariat" |
            `Central Agencies` == "National assembly's secretariat"|
-     #      `Central Agencies` == "HoChiMinh Academy of Politics" |
-           `Central Agencies` == "Governmental office" |
+             `Central Agencies` == "Governmental office" |
            `Central Agencies` == "Office of central party committee") %>% 
   drop_na() %>% 
   mutate(Year = make_date(Year)) 
@@ -109,8 +105,5 @@ tb_allyr <- allyr %>%
   tab_header(title = "Planned Expenditures of Some Central Offices \n2006-2017",
            subtitle = "(in million USD)") %>% 
   tab_source_note("Data complied by author from multiple reports by \nVietnam's Ministry of Finance")
-
-#tb_allyr %>% 
-#gt::gtsave("test.png")
 ```
 
