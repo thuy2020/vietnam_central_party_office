@@ -40,7 +40,7 @@ ggplot(aes(Year, Amount_milusd)) +
   theme_minimal()
 pd_party
 
-#ggsave("centralparty.png", pd_party)
+ggsave("centralparty.png", pd_party)
 ```
 
 ```{r pd_four_office}
@@ -67,7 +67,7 @@ four_office %>%
          caption = "Note: Data of the Central Party Office for 2009, before 2008 and after 2015 are not available \nSource: Data complied by author from multiple reports by \nVietnam's Ministry of Finance") +
   #scale_x_discrete(breaks = 2006:2017) +
   theme(
-  legend.position = c(.4, .7),
+  legend.position = c(.4, .6),
   legend.justification = c("right", "bottom"),
   legend.box.just = "right",
   legend.margin = margin(6, 6, 6, 6),
@@ -75,7 +75,7 @@ four_office %>%
   ) 
  #ggplotly(four_off)
 
-#ggsave("fouroffices.png")
+ggsave("fouroffices.png")
 ```
 
 
@@ -105,5 +105,44 @@ tb_allyr <- allyr %>%
   tab_header(title = "Planned Expenditures of Some Central Offices \n2006-2017",
            subtitle = "(in million USD)") %>% 
   tab_source_note("Data complied by author from multiple reports by \nVietnam's Ministry of Finance")
+
 ```
+
+### A View of the Vietnamese Communist Party’s Internal Tension through the Budget of the Central Party Office
+
+#### The Offices of the “Four Pillars”
+The Vietnamese Communist Party (VCP) is not only the ruling party in Vietnam but is also the only political party that exists legally in this country of nearly 100 million people. As in other communist countries, the VCP’s domination is written into the country’s constitution. There is no law that bans the formation of political parties but the authorities would arrest and imprison anyone who attempts to challenge the VCP’s monopoly. 
+
+The VCP distinguishes itself from the government in principle but not in practice. One such practice is the Party’s use of government revenues from Vietnamese tax-payers for its own expenses without any public supervision. The total expenditures of the Party to conduct Party-only businesses are a secret, but they must be a huge drain on the national budget. There are perhaps tens of thousands of Party bureaucrats out of 4 million Party members. They run Party organizations that are extended alongside the government bureaucracy throughout society. 
+
+At the national level, a Central Party Office (CPO) coordinates Party business under the direct supervision of the Politburo and the Secretariat. The Head of this Office is a member of the Secretariat whose official rank is higher than a government minister. The General Secretary of the VCP is considered one of the four “pillars” of the regime in Vietnam. The other three “pillars” include the State President, the Prime Minister, and the Chair of the National Assembly. The Secretary is primus inter pares among the four.
+
+Like the Central Party Office (CPO), three other offices play the same role for three remaining government “pillars,” including 1) the State President’s Office (SPO) to coordinate the business of the State President and the Vice President; 2) the Office of Government (OG), a ministerial-level agency under the Prime Minister; and 3) the Office of the National Assembly (ONA) to serve Chair of the National Assembly, Vice-Chairs, the Standing Committee and other Committees, and the Ethnic Council of the National Assembly. 
+
+Since the Prime Minister oversees the most activities of the government, one would expect the Office of Government (OG) to have the largest budget among the four. But this is not the case. As Vietnam’s national income has increased at the rate of 5-7% in the last decade, one also expects the budgets of all four agencies to increase; yet our data shows a pattern of uneven increase under the leadership of the VCP’s General Secretary Nguyen Phu Trong since 2011.
+
+####The Party Chief’s Mixed Record 
+
+Mr. Trong has been more influential than his two immediate predecessors, Mr. Le Kha Phieu and Mr. Nong Duc Manh. In his second term he launched an anti-corruption campaign that netted more than 110 high-ranking officials.  
+
+Yet success did not come smoothly. Mr. Trong failed in his first attempt to launch an anti-corruption agenda in 2012. Despite his recommendation, the Central Committee of the VCP refused to discipline then-Prime Minister Nguyen Tan Dung for his role in the bankruptcy of several large state-owned conglomerates. 
+
+Notwithstanding that prominent failure, Trong successfully re-established two important Central Party Commissions, including the Economic Commission and the Interior Commission in 2013. Both Commissions had been folded into the Central Party Office since 2007.
+
+The Economic Commission was now tasked with overseeing the state-owned enterprises many of which were hotbeds of corruption under the leadership of Prime Minister Dung. The Interior Commission was to be primarily responsible for the investigation of graft cases involving high-ranking officials. 
+
+Yet, Trong encountered resistance again with the VCP’s Central Committee in 2013 when he recommended Mr. Vuong Dinh Hue and Mr. Nguyen Ba Thanh, the two new chairmen of these two Commissions, for membership in the Politburo. The Central Committee did not vote for them but elected other candidates, meaning their power would be limited.
+
+As part of his strategy to fight corruption and promote state-owned enterprises, Trong entrusts the CPO with the task of watching over the party branches in those enterprises.  By his second term as General Secretary (since 2016), Trong was able to get key allies elected into the Politburo, including Mr. Vuong Dinh Hue, Mr. Tran Quoc Vuong, and Mr. Pham Minh Chinh (Mr. Thanh had died earlier of illness). 
+
+It has turned out that the Economic Commission failed to assume any larger role and became a kind of halfway house for corrupt officials awaiting discipline such as Mr. Dinh La Thang and Mr. Trieu Tai Vinh.  In contrast, the Interior Commission has been an effective player in the anti-corruption effort under the leadership of Mr. Phan Dinh Trac, a former Police Colonel. Mr. Trac is widely tipped to be elected into the Politburo at the next Party Congress.
+Where Have All the Money Gone?
+
+When we examine the budget of the CPO, we also found evidence of a more active Trong.  The actual expenditures are not available, but the planned expenditures of the CPO show an increase of 4 times in 7 years between 2008 and 2015, from nearly US$27 million (VND 622 billion) to about US$105 million USD (more than VND2400 billion).
+
+A remarkable change, namely a sharp increase of nearly 180 percent of planned expenditures for the CPO, took place between 2011 and 2012 right after Nguyen Phu Trong became General Secretary (see Table 1 & 2). This was in contrast with the earlier much sharper increase of the Office of the National Assembly (ONA)’s budget during 2006-2010.
+
+With that increase, the budget for the CPO in 2012 was almost three times as high as that of the Office of Government, or more than twice higher than the combined budgets of the Office of Government and the Office of the State President. Although the budgets of other offices also rose, they bottomed out after 2014 while the budget of the CPO continued its sharp rise in 2015, when data on its spending ceased to be available.
+The mixed record of Mr. Trong captures the ongoing internal tension at the apex of the VCP. He has done much to shore up the power of his office by reviving key Party Commissions and expanding the CPO’s budget. This helps reverse the trend of the previous decade when the pillar of the General Secretary shrank and was in danger of losing significance vis-à-vis the other three. 
+Whether his successor can sustain Mr. Trong’s work is an open question. With Mr. Trong’s failure to empower the Economic Commission for more effective control over state-owned enterprises, the challenge awaits the next Party Chief to fight for his own political relevance. 
 
