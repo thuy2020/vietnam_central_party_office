@@ -98,32 +98,3 @@ ggplot(aes(Year, Amount_milusd)) +
 pd_party
 ```
 
-### Planned Expenditures of Some Central Offices 2006-2017
-
-```{r, fig.align='center', fig.height=7, fig.width=8}
-library(gt)
-allyr <- pd %>% 
-  filter(`Central Agencies` != "Supreme people's court" & 
-          `Central Agencies` != "Supreme people's court of investigation" &
-         `Central Agencies` != "Office of Central Committee for directing prevention and  anti-corruption" &
-           Year != 2020 &
-           Year != 2019 &
-           Year != 2018) %>% 
-  select("Central Agencies", "Amount_milusd", "Year") %>% 
-  pivot_wider(values_from = Amount_milusd,
-              names_from = Year) 
-
-allyr[1, 1] <- "State President’s Office"
-allyr[2, 1] <- "Office of the National Assembly"
-allyr[4, 1] <- "Office of Government"
-allyr[5, 1] <- "Central Party Office"
-  
-tb_allyr <- allyr %>% 
-  gt() %>% 
-  cols_label(`Central Agencies` = "") %>% 
-  cols_align(align = "left") %>% 
-  tab_header(title = "Planned Expenditures of Some Central Offices \n2006-2017",
-           subtitle = "(in million USD)") %>% 
-  tab_source_note("Data complied by author from multiple reports by \nVietnam's Ministry of Finance")
-```
-
