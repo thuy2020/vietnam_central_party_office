@@ -125,6 +125,5 @@ tb_allyr <- allyr %>%
   tab_header(title = "Planned Expenditures of Some Central Offices \n2006-2017",
            subtitle = "(in million USD)") %>% 
   tab_source_note("Data complied by author from multiple reports by \nVietnam's Ministry of Finance")
-tb_allyr
 ```
 
